@@ -4,9 +4,21 @@ part of 'app_pages.dart';
 abstract class Routes {
   Routes._();
   static const HOME = _Paths.HOME;
+  static const LOGIN = _Paths.LOGIN;
+  static const ONBOARDING = _Paths.ONBOARDING;
+  static const BOTNAVBAR = _Paths.BOTNAVBAR;
+  static const FOOD = _Paths.FOOD;
+  static const COMMUNITY = _Paths.COMMUNITY;
+  static const PROFILE = _Paths.PROFILE;
 }
 
 abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
+  static const LOGIN = '/login';
+  static const ONBOARDING = '/onboarding';
+  static const BOTNAVBAR = '/botnavbar';
+  static const FOOD = '/food';
+  static const COMMUNITY = '/community';
+  static const PROFILE = '/profile';
 }
