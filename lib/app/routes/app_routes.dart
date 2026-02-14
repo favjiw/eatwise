@@ -10,6 +10,11 @@ abstract class Routes {
   static const FOOD = _Paths.FOOD;
   static const COMMUNITY = _Paths.COMMUNITY;
   static const PROFILE = _Paths.PROFILE;
+  static const SEARCH_FOOD = _Paths.SEARCH_FOOD;
+  static const SCANNER = _Paths.SCANNER;
+  static const FOOD_DETAIL = _Paths.FOOD_DETAIL;
+  static const HISTORY = _Paths.HISTORY;
+  static const REGISTER = _Paths.REGISTER;
 }
 
 abstract class _Paths {
@@ -21,4 +26,9 @@ abstract class _Paths {
   static const FOOD = '/food';
   static const COMMUNITY = '/community';
   static const PROFILE = '/profile';
+  static const SEARCH_FOOD = '/search-food';
+  static const SCANNER = '/scanner';
+  static const FOOD_DETAIL = '/food-detail';
+  static const HISTORY = '/history';
+  static const REGISTER = '/register';
 }

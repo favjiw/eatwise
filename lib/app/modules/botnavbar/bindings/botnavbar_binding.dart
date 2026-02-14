@@ -1,5 +1,6 @@
 import 'package:eatwise/app/modules/community/controllers/community_controller.dart';
 import 'package:eatwise/app/modules/food/controllers/food_controller.dart';
+import 'package:eatwise/app/modules/history/controllers/history_controller.dart';
 import 'package:eatwise/app/modules/profile/controllers/profile_controller.dart';
 import 'package:get/get.dart';
 
@@ -34,5 +35,8 @@ class BotnavbarBinding extends Bindings {
 
     // Profile Tab
     Get.lazyPut<ProfileController>(() => ProfileController(), fenix: true);
+
+    // history
+    Get.lazyPut<HistoryController>(() => HistoryController(), fenix: true);
   }
 }

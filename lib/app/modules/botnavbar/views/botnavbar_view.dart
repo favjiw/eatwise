@@ -1,15 +1,13 @@
+import 'package:eatwise/app/modules/history/views/history_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-// Constants
 import '../../../shared/constants/colors.dart';
 import '../../../shared/constants/text_style.dart';
 
-// Views untuk setiap Tab
 import '../../home/views/home_view.dart';
-import '../../food/views/food_view.dart';
 import '../../community/views/community_view.dart';
 import '../../profile/views/profile_view.dart';
 
@@ -20,10 +18,9 @@ class BotnavbarView extends GetView<BotnavbarController> {
 
   @override
   Widget build(BuildContext context) {
-    // Daftar Halaman
     final List<Widget> pages = const [
       HomeView(),
-      SizedBox(),
+      HistoryView(),
       SizedBox(),
       CommunityView(),
       ProfileView(),
@@ -67,13 +64,13 @@ class BotnavbarView extends GetView<BotnavbarController> {
                       // TAB 1: HOME
                       _buildNavItem(0, 'Home', 'home_act_ic.svg', 'home_inac_ic.svg'),
 
-                      // TAB 2: DIARY (Placeholder Icon Meals dari Dietin)
+                      // TAB 2: DIARY
                       _buildNavItem(1, 'Jurnal', 'meals_act_ic.svg', 'meals_inac_ic.svg'),
 
                       // SPACER UNTUK TOMBOL TENGAH
                       SizedBox(width: 40.w),
 
-                      // TAB 3: COMMUNITY (Placeholder Icon Stats dari Dietin)
+                      // TAB 3: COMMUNITY
                       _buildNavItem(3, 'Sosial', 'stats_act_ic.svg', 'stats_inac_ic.svg'),
 
                       // TAB 4: PROFILE
@@ -87,7 +84,7 @@ class BotnavbarView extends GetView<BotnavbarController> {
                 alignment: Alignment.topCenter,
                 child: GestureDetector(
                   onTap: () {
-                    Get.toNamed('/food');
+                    Get.toNamed('/scanner');
                   },
                   child: Container(
                     padding: EdgeInsets.all(6.w),
@@ -133,8 +130,6 @@ class BotnavbarView extends GetView<BotnavbarController> {
             'assets/images/${isActive ? activeIcon : inactiveIcon}',
             width: 24.w,
             height: 24.h,
-            // Jika icon Dietin berwarna, hapus colorFilter ini.
-            // Jika icon hitam putih, gunakan ini untuk mewarnai aktif (Sage Green).
             colorFilter: isActive
                 ? const ColorFilter.mode(AppColors.primary, BlendMode.srcIn)
                 : const ColorFilter.mode(AppColors.lightGrey, BlendMode.srcIn),

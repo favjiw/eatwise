@@ -6,18 +6,14 @@ import '../../../data/services/user_service.dart';
 class OnboardingController extends GetxController {
   final UserService _userService = UserService.to;
 
-  // Page Controller untuk navigasi slide
   final pageController = PageController();
   var pageIndex = 0.obs;
 
-  // --- DATA INPUT ---
-  var selectedGender = ''.obs; // 'L' atau 'P'
+  var selectedGender = ''.obs;
   final ageController = TextEditingController();
   final heightController = TextEditingController();
   final weightController = TextEditingController();
 
-  // --- DATA ALERGI ---
-  // List alergi yang tersedia untuk dipilih
   final availableAllergies = [
     'Kacang', 'Seafood', 'Susu Sapi', 'Telur',
     'Gandum', 'Kedelai', 'Ikan', 'Kerang'
@@ -26,7 +22,6 @@ class OnboardingController extends GetxController {
 
   var isLoading = false.obs;
 
-  // Pindah Halaman
   void updatePageIndex(int index) {
     pageIndex.value = index;
   }
@@ -38,7 +33,7 @@ class OnboardingController extends GetxController {
           curve: Curves.ease
       );
     } else {
-      submitProfile(); // Halaman terakhir -> Submit
+      submitProfile();
     }
   }
 
@@ -51,12 +46,10 @@ class OnboardingController extends GetxController {
     }
   }
 
-  // Logika Pilih Gender
   void selectGender(String gender) {
     selectedGender.value = gender;
   }
 
-  // Logika Pilih Alergi (Toggle)
   void toggleAllergy(String allergy) {
     if (selectedAllergies.contains(allergy)) {
       selectedAllergies.remove(allergy);
@@ -65,7 +58,6 @@ class OnboardingController extends GetxController {
     }
   }
 
-  // SUBMIT DATA KE BACKEND
   void submitProfile() async {
     // Validasi sederhana
     if (selectedGender.value.isEmpty || ageController.text.isEmpty ||
@@ -77,7 +69,6 @@ class OnboardingController extends GetxController {
     try {
       isLoading.value = true;
 
-      // Siapkan Model User
       UserModel userUpdate = UserModel(
         age: int.tryParse(ageController.text),
         gender: selectedGender.value,
@@ -86,11 +77,10 @@ class OnboardingController extends GetxController {
         allergies: selectedAllergies.toList(),
       );
 
-      // Kirim ke API
       await _userService.updateProfile(userUpdate);
 
       Get.snackbar("Sukses", "Profil berhasil disimpan!");
-      Get.offAllNamed('/botnavbar'); // Masuk Dashboard
+      Get.offAllNamed('/botnavbar');
 
     } catch (e) {
       Get.snackbar("Gagal", e.toString().replaceAll('Exception: ', ''));

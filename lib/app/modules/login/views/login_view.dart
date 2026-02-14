@@ -16,7 +16,6 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // Menutup keyboard secara otomatis saat menyentuh area kosong
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         backgroundColor: AppColors.mainWhite,
@@ -25,21 +24,18 @@ class LoginView extends GetView<LoginController> {
             padding: EdgeInsets.symmetric(horizontal: 20.0.w),
             child: SingleChildScrollView(
               child: SizedBox(
-                // Mengatur tinggi agar elemen bisa tersebar (MainAxisAlignment.spaceBetween)
                 height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top - 40.h,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // --- BAGIAN ATAS: LOGO ---
                     Column(
                       children: [
                         SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-                        // Menggunakan asset logo dari Dietin
-                        SvgPicture.asset('assets/images/logo_img_sage.svg'),
+                        // SvgPicture.asset('assets/images/logo_img_sage.svg'),
+                        Image.asset('assets/images/Logo-peanut.png'),
                       ],
                     ),
 
-                    // --- BAGIAN TENGAH: FORM INPUT ---
                     Form(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -79,21 +75,20 @@ class LoginView extends GetView<LoginController> {
                             ),
                           ),
                           SizedBox(height: 16.h),
-                          GestureDetector(
-                            onTap: () => Get.toNamed('/forgot-password'),
-                            child: Text(
-                              'Lupa kata sandi?',
-                              style: AppTextStyles.label.copyWith(
-                                color: AppColors.mainBlack,
-                                fontSize: 12.sp,
-                              ),
-                            ),
-                          ),
+                          // GestureDetector(
+                          //   onTap: () => Get.toNamed('/forgot-password'),
+                          //   child: Text(
+                          //     'Lupa kata sandi?',
+                          //     style: AppTextStyles.label.copyWith(
+                          //       color: AppColors.mainBlack,
+                          //       fontSize: 12.sp,
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
 
-                    // --- BAGIAN BAWAH: ACTION BUTTONS ---
                     Column(
                       children: [
                         Obx(

@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../data/models/meal_log_model.dart';
 import '../../../shared/constants/colors.dart';
 import '../../../shared/constants/text_style.dart';
-import '../../../data/models/meal_log_model.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -32,7 +32,10 @@ class HomeView extends GetView<HomeController> {
                 _buildMacroNutrients(),
                 SizedBox(height: 32.h),
 
-                Text("Jurnal Makan", style: AppTextStyles.labelBold.copyWith(fontSize: 18.sp)),
+                Text(
+                  "Jurnal Makan",
+                  style: AppTextStyles.labelBold.copyWith(fontSize: 18.sp),
+                ),
                 SizedBox(height: 16.h),
 
                 _buildMealSection(
@@ -97,7 +100,6 @@ class HomeView extends GetView<HomeController> {
           child: ExpansionTile(
             tilePadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
             initiallyExpanded: !isEmpty,
-
             leading: Container(
               padding: EdgeInsets.all(8.w),
               decoration: BoxDecoration(
@@ -120,8 +122,10 @@ class HomeView extends GetView<HomeController> {
             ),
             trailing: InkWell(
               onTap: () {
-
-                Get.toNamed('/food', arguments: mealTypeKey);
+                Get.toNamed('/search-food', arguments: {
+                  'meal_type': mealTypeKey,
+                  'date': '2026-02-14',
+                });
               },
               child: Container(
                 padding: EdgeInsets.all(4.w),
@@ -165,7 +169,6 @@ class HomeView extends GetView<HomeController> {
                             child: const Icon(Icons.restaurant, color: AppColors.lightGrey, size: 20),
                           ),
                           SizedBox(width: 12.w),
-
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -183,7 +186,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                           ),
                           Text(
-                            "${((log.food?.calories ?? 0) * log.portion!).toInt()} kkal",
+                            "${((log.food?.calories ?? 0) * (log.portion ?? 1.0)).toInt()} kkal",
                             style: AppTextStyles.labelBold.copyWith(fontSize: 12.sp, color: AppColors.primary),
                           ),
                         ],
@@ -266,7 +269,10 @@ class HomeView extends GetView<HomeController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(label, style: AppTextStyles.label.copyWith(color: AppColors.darkGrey)),
-        Text("${value.value.toInt()} kkal", style: AppTextStyles.labelBold.copyWith(fontSize: 18.sp, color: AppColors.primary)),
+        Text(
+          "${value.value.toInt()} kkal",
+          style: AppTextStyles.labelBold.copyWith(fontSize: 18.sp, color: AppColors.primary),
+        ),
       ],
     ));
   }
@@ -295,9 +301,19 @@ class HomeView extends GetView<HomeController> {
         children: [
           Text(label, style: AppTextStyles.label.copyWith(fontSize: 12.sp)),
           SizedBox(height: 8.h),
-          Obx(() => Text("${value.value.toInt()}$unit", style: AppTextStyles.labelBold.copyWith(fontSize: 16.sp, color: color))),
+          Obx(() => Text(
+            "${value.value.toInt()}$unit",
+            style: AppTextStyles.labelBold.copyWith(fontSize: 16.sp, color: color),
+          )),
           SizedBox(height: 4.h),
-          Container(height: 4.h, width: 40.w, decoration: BoxDecoration(color: color.withOpacity(0.3), borderRadius: BorderRadius.circular(2))),
+          Container(
+            height: 4.h,
+            width: 40.w,
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.3),
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
         ],
       ),
     );
